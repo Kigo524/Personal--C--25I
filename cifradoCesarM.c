@@ -61,3 +61,23 @@ void cifradoCesar() {
 
 //*********************************************************************************************************************
 
+// Cifrar un mensaje
+void cifrarMensaje(char mensaje[]) {
+    char mensajeCifrado[100];
+    int longitud = strlen(mensaje);
+
+    for (i = 0; i < longitud; i++) {
+        if (mensaje[i] >= 'a' && mensaje[i] <= 'z') {
+            int indiceOriginal = mensaje[i] - 'a';
+            int nuevaPosicion = (indiceOriginal + posicion) % 26;
+            mensajeCifrado[i] = abecedario[nuevaPosicion];
+        } else {
+            // Si no es una letra, se deja igual
+            mensajeCifrado[i] = mensaje[i];
+        }
+    }
+    mensajeCifrado[longitud] = '\0'; // Terminar la cadena
+
+    printf("Mensaje original: %s\n", mensaje);
+    printf("Mensaje cifrado: %s\n", mensajeCifrado);
+}
