@@ -66,16 +66,17 @@ void cifradoCesar() {
 void cifrarMensaje(char mensaje[]) {
     char mensajeCifrado[100]; //arreglo para almacenar el mensaje cifrado
     int longitud = strlen(mensaje); //calcular la longitud del mensaje
+    int j; //variable local para el bucle(sino se genera un mensaje raro)
 
     //para recorrer cada caracter del mensaje
-    for (i = 0; i < longitud; i++) {
-        if (mensaje[i] >= 'a' && mensaje[i] <= 'z') {
-            int indiceOriginal = mensaje[i] - 'a'; //calcular el indice de la letra en el abecedario
+    for (j=0; j<longitud; j++) {
+        if (mensaje[j] >= 'a' && mensaje[j] <= 'z') {
+            int indiceOriginal = mensaje[j] - 'a'; //calcular el indice de la letra en el abecedario
             int nuevaPosicion = (indiceOriginal + posicion) % 26; //calcular la nueva posicion con el desplazamiento
-            mensajeCifrado[i] = abecedario[nuevaPosicion]; //asignar la letra cifrada
+            mensajeCifrado[j] = abecedario[nuevaPosicion]; //asignar la letra cifrada
         } else {
             // Si no es una letra, se deja igual
-            mensajeCifrado[i] = mensaje[i];
+            mensajeCifrado[j] = mensaje[j];
         }
     }
     mensajeCifrado[longitud] = '\0'; // Terminar la cadena
