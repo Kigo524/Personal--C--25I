@@ -9,6 +9,8 @@ Utiliza arrays para almacenar los datos.*/
     int i=0, contMax = 0, suma = 0, modaT = 0; //modaT de Temporal
     int j = 0;
     int cantNums = 0; //para saber la cantidad de numeros que se ingresa
+    float medianaT = 0; //float para manejar promedios
+    float mediaT = 0; //global para la media
 
     void pedirNumeros();
     void media();
@@ -19,10 +21,11 @@ Utiliza arrays para almacenar los datos.*/
     /******************************************************************************** */
 
 int main(){
-
     pedirNumeros();
+    media();
+    mediana();
     moda();
-    
+    imprimirNumeros();
     return 0;
 }
 
@@ -82,4 +85,35 @@ void mediana(){
     } else{
         int medio = nums[cantNums / 2]; //numero central
     }
+}
+
+void media(){
+    int media = 0;
+    media = suma / cantNums;
+}
+
+void imprimirNumeros() {
+    // Imprimir los números ingresados
+    printf("Los numeros ingresados son:\n");
+    for (i = 0; i < cantNums; i++) {
+        printf("%d ", nums[i]);
+    }
+    printf("\n");
+
+    //imprimir la media
+    printf("La media es: %d", media);
+
+    //imprimir la mediana
+    printf("Los numeros ordenados son: ");
+    for(i=0; i<cantNums; i++){
+        printf("%d, ", nums[i]);
+    }
+    if(cantNums % 2 == 0){
+        printf("La mediana es: %.2f", medianaT);
+    } else{
+        printf("La mediana es: %d", medianaT);
+    }
+
+    //imprimiendo moda
+    printf("La moda es: %d", modaT);
 }
