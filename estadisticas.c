@@ -15,11 +15,11 @@ int main(){
         printf("Ingresa el numero %d: ", i+1);
         scanf("%d", &nums[i]);
 
-        //sumando numeros para la media
+        //sumando numeros para la MEDIA
         suma = suma + nums[i];
     }
 
-    //buscando la moda
+    //buscando la MODA
     for(i=0; i<10; i++){
         int cont = 0; //contador del numero actual en i
         for(j=0; j<10; j++){
@@ -33,6 +33,9 @@ int main(){
             moda = nums[i]; //se guarda el valor del numero que se repite mas
         }
     }
+
+    //calculando la mediana
+    
 
     return 0;
 
