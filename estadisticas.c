@@ -7,8 +7,6 @@ Utiliza arrays para almacenar los datos.*/
 #include<stdio.h>
     int nums[10];
     int modas[10]; //arreglo para almacenar si hay mas de una moda
-    int i=0, contMax = 0, suma = 0, modaCont = 0; //modaT de Temporal
-    int j = 0;
     int cantNums = 0; //para saber la cantidad de numeros que se ingresa
     float medianaT = 0; //float para manejar promedios
     float mediaT = 0; //global para la media
@@ -34,6 +32,7 @@ int main(){
 
 //pidiendo numeros
 void pedirNumeros(){
+    int suma = 0, i;
     for(i=0; i<10; i++){
         printf("Ingresa el numero %d: ", i+1);
         scanf("%d", &nums[i]);
@@ -42,11 +41,13 @@ void pedirNumeros(){
         suma = suma + nums[i];
         cantNums++; //que va contando cuantos numeros se ingresan
     }
+    mediaT = (float)suma / cantNums; //calucla la media como flotante
 }
 
 void moda() {
-    contMax = 0; // Reiniciar el máximo contador
-    modaCont = 0; // Reiniciar el contador de modas
+    int contMax = 0; // Maxima repeticion encontrada
+    int modaCont = 0; // contador de modas
+    int i, j;
 
     for (i = 0; i < 10; i++) {
         int cont = 0; // Contador del número actual en i
@@ -73,60 +74,56 @@ void moda() {
             }
         }
     }
+    // Imprimir las modas
+    printf("La(s) moda(s) es/son: ");
+    for (int i = 0; i < modaCont; i++) {
+        printf("%d ", modas[i]);
+    }
+    printf("(aparece %d veces)\n", contMax);
 }
 
 void mediana(){
     //primero es ordenar los numeros (ordenamiento de burbuja)
-    int bandera, aux;
-    do{
-        bandera=0;
-        for(i=0; i<10; i++){
-            
-            if(nums[i]>nums[i+1]){
-
-                bandera=1; // la bandera para indicar que el programa corre por aqui
-
-                aux=nums[i];
-                nums[i]= nums[i+1];
-                nums[i+1]=aux;
+    int aux;
+    for (int i = 0; i < cantNums - 1; i++) {
+        for (int j = 0; j < cantNums - i - 1; j++) {
+            if (nums[j] > nums[j + 1]) {
+                aux = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = aux;
             }
         }
-    }while(bandera==1);
+    }
 
-    //para cuando los datos son par
-    if(cantNums % 2 == 0){
-        int medio1 = nums[(cantNums / 2) - 1]; //numero central izquierdo
-        int medio2 = nums[(cantNums / 2)];
-        medianaT = (medio1 + medio2) / 2; //sacar promedio de los 2 centrales
-    } else{ //para cuando los datos son impares
-        medianaT = nums[cantNums / 2]; //numero central
+    // Calcular la mediana
+    if (cantNums % 2 == 0) { // Si la cantidad de números es par
+        int medio1 = nums[(cantNums / 2) - 1]; // Número central izquierdo
+        int medio2 = nums[cantNums / 2];       // Número central derecho
+        medianaT = (medio1 + medio2) / 2.0;    // Promedio de los dos números centrales
+    } else { // Si la cantidad de números es impar
+        medianaT = nums[cantNums / 2]; // Número central
     }
 }
 
-void media(){
-    mediaT = (float)suma / cantNums;
-}
-
-//para imprimir resultados
+// Imprimiendo los resultados
 void imprimirNumeros() {
     // Imprimir los números ingresados
     printf("Los numeros ingresados son:\n");
-    for (i = 0; i < cantNums; i++) {
+    for (int i = 0; i < cantNums; i++) {
         printf("%d ", nums[i]);
     }
     printf("\n");
 
-    //imprimir la media
+    // Imprimir la media
     printf("La media es: %.2f\n", mediaT);
 
-    //imprimir la mediana
-    printf("Los numeros ordenados son:\n ");
-    for(i=0; i<cantNums; i++){
-        printf("%d, ", nums[i]);
+    // Imprimir la mediana
+    printf("Los numeros ordenados son: ");
+    for (int i = 0; i < cantNums; i++) {
+        printf("%d ", nums[i]);
     }
     printf("\n");
     printf("La mediana es: %.2f\n", medianaT);
 
-    //imprimiendo moda
-    printf("La moda es: %d (aparece %d veces)\n", modaCont, contMax);
+    // Imprimir las modas (ya se imprimen en la función moda)
 }
