@@ -8,6 +8,7 @@ Utiliza arrays para almacenar los datos.*/
     int nums[10];
     int i=0, contMax = 0, suma = 0, modaT = 0; //modaT de Temporal
     int j = 0;
+    int cantNums = 0; //para saber la cantidad de numeros que se ingresa
 
     void pedirNumeros();
     void media();
@@ -35,6 +36,7 @@ void pedirNumeros(){
 
         //sumando numeros para la MEDIA
         suma = suma + nums[i];
+        cantNums++; //que va contando cuantos numeros se ingresan
     }
 }
 
@@ -72,5 +74,12 @@ void mediana(){
         }
     }while(bandera==1);
 
-    
+    //para cuando los datos son par
+    if(cantNums % 2 == 0){
+        int medio1 = nums[(cantNums / 2) - 1]; //numero central izquierdo
+        int medio2 = nums[(cantNums / 2)];
+        float mediana = (medio1 + medio2) / 2; //sacar promedio de los 2 centrales
+    } else{
+        int medio = nums[cantNums / 2]; //numero central
+    }
 }
