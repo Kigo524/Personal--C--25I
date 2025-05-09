@@ -26,7 +26,7 @@ int main(){
 }
 
     /******************************************************************************** */
-    
+
 //pidiendo numeros
 void pedirNumeros(){
     for(i=0; i<10; i++){
@@ -52,4 +52,25 @@ void moda(){
             modaT = nums[i]; //se guarda el valor del numero que se repite mas
         }
     }
+}
+
+void mediana(){
+    //primero es ordenar los numeros (ordenamiento de burbuja)
+    int bandera, aux;
+    do{
+        bandera=0;
+        for(i=0; i<9; i++){
+            
+            if(nums[i]>nums[i+1]){
+
+                bandera=1; // la bandera para indicar que el programa corre por aqui
+
+                aux=nums[i];
+                nums[i]= nums[i+1];
+                nums[i+1]=aux;
+            }
+        }
+    }while(bandera==1);
+
+    
 }
