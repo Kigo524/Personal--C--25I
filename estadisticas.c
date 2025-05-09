@@ -6,7 +6,8 @@ Utiliza arrays para almacenar los datos.*/
 
 #include<stdio.h>
     int nums[10];
-    int i=0, contMax = 0, suma = 0, modaT = 0; //modaT de Temporal
+    int modas[10]; //arreglo para almacenar si hay mas de una moda
+    int i=0, contMax = 0, suma = 0, modaCont = 0; //modaT de Temporal
     int j = 0;
     int cantNums = 0; //para saber la cantidad de numeros que se ingresa
     float medianaT = 0; //float para manejar promedios
@@ -43,18 +44,33 @@ void pedirNumeros(){
     }
 }
 
-void moda(){
-    for(i=0; i<10; i++){
-        int cont = 0; //contador del numero actual en i
-        for(j=0; j<10; j++){
-            if(nums[i] == nums[j]){ //comparo el numero actual en i con todos los demas que se guardaron en j
-                cont++; //aumenta el contador si coinciden los numeros
+void moda() {
+    contMax = 0; // Reiniciar el máximo contador
+    modaCont = 0; // Reiniciar el contador de modas
+
+    for (i = 0; i < 10; i++) {
+        int cont = 0; // Contador del número actual en i
+        for (j = 0; j < 10; j++) {
+            if (nums[i] == nums[j]) { // Comparo el número actual en i con todos los demás que se guardaron en j
+                cont++; // Aumenta el contador si coinciden los números
             }
         }
 
-        if(cont > contMax){ //despues de contar las veces que aparece el numero actual, se compara si hay un numero que se repite mas
-            contMax = cont; //entonces contMax se actualiza
-            modaT = nums[i]; //se guarda el valor del numero que se repite mas
+        if (cont > contMax) { // Si encontramos un número con mayor frecuencia
+            contMax = cont;  // Actualizamos el máximo
+            modaCont = 0;   // Reiniciamos el contador de modas
+            modas[modaCont++] = nums[i]; // Guardamos la nueva moda
+        } else if (cont == contMax) { // Si la frecuencia es igual al máximo
+            int yaGuardado = 0;
+            for (int k = 0; k < modaCont; k++) { // Verificar si ya está guardado
+                if (modas[k] == nums[i]) {
+                    yaGuardado = 1;
+                    break;
+                }
+            }
+            if (!yaGuardado) { // Si no está guardado, lo agregamos
+                modas[modaCont++] = nums[i];
+            }
         }
     }
 }
@@ -112,5 +128,5 @@ void imprimirNumeros() {
     printf("La mediana es: %.2f\n", medianaT);
 
     //imprimiendo moda
-    printf("La moda es: %d (aparece %d veces)\n", modaT, contMax);
+    printf("La moda es: %d (aparece %d veces)\n", modaCont, contMax);
 }
