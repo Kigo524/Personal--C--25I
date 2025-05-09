@@ -64,7 +64,7 @@ void mediana(){
     int bandera, aux;
     do{
         bandera=0;
-        for(i=0; i<9; i++){
+        for(i=0; i<10; i++){
             
             if(nums[i]>nums[i+1]){
 
@@ -81,17 +81,17 @@ void mediana(){
     if(cantNums % 2 == 0){
         int medio1 = nums[(cantNums / 2) - 1]; //numero central izquierdo
         int medio2 = nums[(cantNums / 2)];
-        float mediana = (medio1 + medio2) / 2; //sacar promedio de los 2 centrales
-    } else{
-        int medio = nums[cantNums / 2]; //numero central
+        medianaT = (medio1 + medio2) / 2; //sacar promedio de los 2 centrales
+    } else{ //para cuando los datos son impares
+        medianaT = nums[cantNums / 2]; //numero central
     }
 }
 
 void media(){
-    int media = 0;
-    media = suma / cantNums;
+    mediaT = (float)suma / cantNums;
 }
 
+//para imprimir resultados
 void imprimirNumeros() {
     // Imprimir los números ingresados
     printf("Los numeros ingresados son:\n");
@@ -101,19 +101,16 @@ void imprimirNumeros() {
     printf("\n");
 
     //imprimir la media
-    printf("La media es: %d", media);
+    printf("La media es: %.2f\n", mediaT);
 
     //imprimir la mediana
-    printf("Los numeros ordenados son: ");
+    printf("Los numeros ordenados son:\n ");
     for(i=0; i<cantNums; i++){
         printf("%d, ", nums[i]);
     }
-    if(cantNums % 2 == 0){
-        printf("La mediana es: %.2f", medianaT);
-    } else{
-        printf("La mediana es: %d", medianaT);
-    }
+    printf("\n");
+    printf("La mediana es: %.2f\n", medianaT);
 
     //imprimiendo moda
-    printf("La moda es: %d", modaT);
+    printf("La moda es: %d (aparece %d veces)\n", modaT, contMax);
 }
