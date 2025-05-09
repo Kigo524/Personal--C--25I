@@ -7,7 +7,33 @@ Utiliza arrays para almacenar los datos.*/
 #include<stdio.h>
 int main(){
     int nums[10];
-    int cont = 0, suma = 0, moda = 0;
+    int i=0, contMax = 0, suma = 0, moda = 0;
+    int j = 0;
 
-    
+    //solicitando numeros
+    for(i=0; i<10; i++){
+        printf("Ingresa el numero %d: ", i+1);
+        scanf("%d", &nums[i]);
+
+        //sumando numeros para la media
+        suma = suma + nums[i];
+    }
+
+    //buscando la moda
+    for(i=0; i<10; i++){
+        int cont = 0; //contador del numero actual en i
+        for(j=0; j<10; j++){
+            if(nums[i] == nums[j]){ //comparo el numero actual en i con todos los demas que se guardaron en j
+                cont++; //aumenta el contador si coinciden los numeros
+            }
+        }
+
+        if(cont > contMax){ //despues de contar las veces que aparece el numero actual, se compara si hay un numero que se repite mas
+            contMax = cont; //entonces contMax se actualiza
+            moda = nums[i]; //se guarda el valor del numero que se repite mas
+        }
+    }
+
+    return 0;
+
 }
